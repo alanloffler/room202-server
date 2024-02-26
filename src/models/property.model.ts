@@ -18,7 +18,7 @@ class PropertyModel {
         connection.release();
         return rows[0];
     }
-    
+    // TODO ADD AND UPDATE
     async deleteProperty(id: number): Promise<ResultSetHeader> {
         const connection = await pool.getConnection();
         const sql: string = 'DELETE FROM properties WHERE id=';
