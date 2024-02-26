@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import AuthModel from '../models/auth.model';
 import IUser from '../interfaces/user.interface';
-import RowData from '../interfaces/mysql.interface';
 import { IError } from '../interfaces/error.interface';
 
 const errorCreation: IError = { status: 400, message: '400 Bad Request | User not created' };
@@ -16,7 +15,7 @@ export const signup = async (req: Request, res: Response) => {
     const encryptedPassword: string = await AuthModel.encryptPassword(req.body.password);
     req.body.password = encryptedPassword;
 
-    const newUser: RowData[] = await AuthModel.createUser(req.body);
+    const newUser = await AuthModel.createUser(req.body);
     if (newUser[0].affectedRows < 1) return res.status(400).json(errorCreation);
 
     const token: string = await AuthModel.generateToken(newUser[0].insertId);

@@ -12,10 +12,10 @@ dotenv.config();
 const app: Application = express();
 const port: number = Number(process.env.SERVER_PORT) || 4000;
 
-app.use(
-    cors({
-        origin: process.env.REACT_URL
-    })
+app.use(cors()
+    // cors({
+    //     origin: process.env.REACT_URL
+    // })
 );
 app.use(morgan('dev'));
 app.use(json());
