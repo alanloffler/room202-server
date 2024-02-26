@@ -1,3 +1,4 @@
+import { ResultSetHeader } from 'mysql2';
 import pool from '../db';
 import { IProperty } from '../interfaces/property.interface';
 
@@ -16,6 +17,14 @@ class PropertyModel {
         const [rows] = await connection.query<IProperty[]>(sql, [id]);
         connection.release();
         return rows[0];
+    }
+    
+    async deleteProperty(id: number): Promise<ResultSetHeader> {
+        const connection = await pool.getConnection();
+        const sql: string = 'DELETE FROM properties WHERE id=';
+        const [rows] = await connection.query<ResultSetHeader>(sql, [id]);
+        connection.release();
+        return rows;
     }
 }
 
