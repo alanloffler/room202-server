@@ -1,9 +1,12 @@
 import { Router } from 'express';
-import { getProperties, getProperty } from '../controllers/property.controller';
+import {PropertyController } from '../controllers/property.controller';
 
 const router: Router = Router();
 
-router.get('/properties', getProperties);
-router.get('/property/:id', getProperty);
+router.get('/properties', PropertyController.getAll);
+router.get('/properties/:id', PropertyController.getById);
+
+router.put('/properties/:id', PropertyController.update);
+router.patch('/properties/:id', PropertyController.setActive);
 
 export default router;

@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import UIModel from '../models/ui.model';
-import { IError } from '../interfaces/error.interface';
+import { IResponseStatus } from '../interfaces/response-status.interface';
 import { IUICombos } from '../interfaces/ui.interface';
 
-const error400: IError = { status: 400, message: '400 Bad Request | Business not found' };
+const error400: IResponseStatus = { status: 400, message: '400 Bad Request | Business not found' };
 
 export const getUIBusiness = async (req: Request, res: Response) => {
     const business = await UIModel.getBusiness();
