@@ -1,13 +1,13 @@
 import { Router } from 'express';
 import { TokenValidation } from '../libs/tokenValidation';
 import { RoleValidation } from '../libs/roleValidation';
-import { getUsers, getUser, updateUser, deleteUser } from '../controllers/user.controller';
+import { UserController } from '../controllers/user.controller';
 
 const router: Router = Router();
 
-router.get('/users', TokenValidation, getUsers);
-router.get('/users/:id', TokenValidation, getUser);
-router.put('/users/:id', TokenValidation, updateUser);
-router.delete('/users/:id', TokenValidation, RoleValidation, deleteUser);
+router.get('/users', TokenValidation, UserController.getAll);
+router.get('/users/:id', TokenValidation, UserController.getOne);
+router.put('/users/:id', TokenValidation, UserController.update);
+router.delete('/users/:id', TokenValidation, RoleValidation, UserController.delete);
 
 export default router;
