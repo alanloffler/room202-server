@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 import AuthModel from '../models/auth.model';
 import IUser from '../interfaces/user.interface';
-import { IError } from '../interfaces/error.interface';
+import { IResponseStatus } from '../interfaces/response-status.interface';
 
-const errorCreation: IError = { status: 400, message: '400 Bad Request | User not created' };
-const errorEmailRegistered: IError = { status: 422, message: '422 Unprocessable Entity | Email already registered' };
-const errorUserNotFound: IError = { status: 400, message: '400 Bad Request | User not found' };
-const errorPasswordNotMatch: IError = { status: 400, message: '400 Bad Request | Password incorrect' };
+const errorCreation: IResponseStatus = { status: 400, message: '400 Bad Request | User not created' };
+const errorEmailRegistered: IResponseStatus = { status: 422, message: '422 Unprocessable Entity | Email already registered' };
+const errorUserNotFound: IResponseStatus = { status: 400, message: '400 Bad Request | User not found' };
+const errorPasswordNotMatch: IResponseStatus = { status: 400, message: '400 Bad Request | Password incorrect' };
 
 export const signup = async (req: Request, res: Response) => {
     const emailUnique: boolean = await AuthModel.emailUniqueCheck(req.body.email);

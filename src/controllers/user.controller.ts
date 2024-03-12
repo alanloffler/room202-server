@@ -3,15 +3,15 @@ import { ResultSetHeader } from 'mysql2';
 import AuthModel from '../models/auth.model';
 import UserModel from '../models/user.model';
 import IUser from '../interfaces/user.interface';
-import { IError } from '../interfaces/error.interface';
+import { IResponseStatus } from '../interfaces/response-status.interface';
 
-const error400UserNotFound: IError = { status: 400, message: '400 Bad Request | User not found' };
-const error400UserNotUpdated: IError = { status: 400, message: '400 Bad Request | User not updated' };
-const error400UserNotDeleted: IError = { status: 400, message: '400 Bad Request | User not deleted' };
-const error400UsersNotFound: IError = { status: 400, message: '400 Bad Request | Users not found' };
-const errorEmailRegistered: IError = { status: 422, message: '422 Unprocessable Entity | Email already registered' };
-const success200UserUpdated: IError = { status: 200, message: '200 OK | User updated' };
-const success200UserDeleted: IError = { status: 200, message: '200 OK | User deleted' };
+const error400UserNotFound: IResponseStatus = { status: 400, message: '400 Bad Request | User not found' };
+const error400UserNotUpdated: IResponseStatus = { status: 400, message: '400 Bad Request | User not updated' };
+const error400UserNotDeleted: IResponseStatus = { status: 400, message: '400 Bad Request | User not deleted' };
+const error400UsersNotFound: IResponseStatus = { status: 400, message: '400 Bad Request | Users not found' };
+const errorEmailRegistered: IResponseStatus = { status: 422, message: '422 Unprocessable Entity | Email already registered' };
+const success200UserUpdated: IResponseStatus = { status: 200, message: '200 OK | User updated' };
+const success200UserDeleted: IResponseStatus = { status: 200, message: '200 OK | User deleted' };
 
 export const getUsers = async (req: Request, res: Response) => {
     //console.log('User:', req.userId);

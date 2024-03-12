@@ -1,4 +1,4 @@
-export interface IError {
+export interface IResponseStatus {
     status: number;
     message: string;
 }
