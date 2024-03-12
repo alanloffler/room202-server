@@ -6,12 +6,12 @@ import { loginSchema } from '../libs/login.schema';
 import { ZodError } from 'zod';
 
 export class AuthController {
-  static errorCreation: IResponseStatus = { status: 400, message: '400 Bad Request | User not created' };
-  static errorEmailRegistered: IResponseStatus = { status: 422, message: '422 Unprocessable Entity | Email already registered' };
-  static errorUserNotFound: IResponseStatus = { status: 400, message: '400 Bad Request | User not found' };
-  static errorPasswordNotMatch: IResponseStatus = { status: 400, message: '400 Bad Request | Password incorrect' };
-  static error500: IResponseStatus = { status: 500, message: '500 Internal Server Error' };
-  static success200: IResponseStatus = { status: 200, message: '200 OK | User created successfully' };
+  static readonly errorCreation: IResponseStatus = { status: 400, message: '400 Bad Request | User not created' };
+  static readonly errorEmailRegistered: IResponseStatus = { status: 422, message: '422 Unprocessable Entity | Email already registered' };
+  static readonly errorUserNotFound: IResponseStatus = { status: 400, message: '400 Bad Request | User not found' };
+  static readonly errorPasswordNotMatch: IResponseStatus = { status: 400, message: '400 Bad Request | Password incorrect' };
+  static readonly error500: IResponseStatus = { status: 500, message: '500 Internal Server Error' };
+  static readonly success200: IResponseStatus = { status: 200, message: '200 OK | User created successfully' };
 
   static async signup(req: Request, res: Response): Promise<Response> {
     const emailUnique: boolean = await AuthModel.emailUniqueCheck(req.body.email);

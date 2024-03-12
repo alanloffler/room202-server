@@ -17,7 +17,7 @@ export class PropertyController {
   static readonly success200PropertyUpdate: IResponseStatus = { status: 200, message: '200 OK | Property updated successfully' };
 
   static async getAll(req: Request, res: Response): Promise<Response> {
-    const properties: IProperty[] = await PropertyModel.getProperties();
+    const properties: IProperty[] = await PropertyModel.getAll();
     if (properties.length < 1) return res.status(400).json(PropertyController.error400Properties);
     return res.json(properties);
   }
@@ -26,7 +26,7 @@ export class PropertyController {
     try {
       const id = Number(req.params.id);
       const validation = getByIdSchema.parse({ id });
-      const property: IProperty = await PropertyModel.getProperty(id);
+      const property: IProperty = await PropertyModel.getOne(id);
       if (property === undefined) return res.status(400).json(PropertyController.error400Property);
       return res.status(200).json(property);
     } catch (error) {
