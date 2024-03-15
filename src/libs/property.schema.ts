@@ -1,5 +1,7 @@
 import z from 'zod';
 
+export const propertyIdSchema = z.object({ id: z.number().positive().gte(0) }).required({ id: true });
+
 export const getByIdSchema = z.object({ id: z.number().positive() }).required({ id: true });
 
 export const setActiveSchema = z
@@ -12,7 +14,7 @@ export const setActiveSchema = z
     active: true
   });
 
-export const updateSchema = z.object({
+export const propertySchema = z.object({
   type: z.string().min(1, {
     message: 'Debes seleccionar un tipo'
   }),
@@ -40,7 +42,7 @@ export const updateSchema = z.object({
   zip: z.string().min(4, {
     message: 'El código postal debe poseer 4 cifras'
   }),
-  is_active: z.boolean().default(true),
+  is_active: z.number().lte(1).gte(0).default(1),
   price: z.coerce
     .number({ invalid_type_error: 'El precio debe ser un número' })
     .positive({ message: 'El precio debe ser positivo' })

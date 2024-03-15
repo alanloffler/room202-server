@@ -10,12 +10,20 @@ export class ImageModel {
     return rows;
   }
 
-  static async create({ id, name }: { id: number, name: string }): Promise<ResultSetHeader[]> {
+  static async getOne(id: number): Promise<RowDataPacket[]> {
+    const connection = await pool.getConnection();
+    const sql: string = 'SELECT name FROM images WHERE id=?';
+    const [rows] = await connection.query<RowDataPacket[]>(sql, [id]);
+    connection.release();
+    return rows;
+  }
+
+  static async create({ id, name }: { id: number, name: string }): Promise<ResultSetHeader> {
     const connection = await pool.getConnection();
     const sql: string = 'INSERT INTO images (name, propertyId) VALUES (?, ?)';
-    const [rows] = await connection.query<ResultSetHeader[]>(sql, [name, id]);
+    const [rows] = await connection.query<ResultSetHeader>(sql, [name, id]);
     connection.release();
-    return Object.values(JSON.parse(JSON.stringify(rows))) as ResultSetHeader[];
+    return rows;
   }
 
   static async delete({ id }: { id: number }): Promise<ResultSetHeader> {
