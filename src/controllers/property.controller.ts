@@ -43,6 +43,7 @@ export class PropertyController {
   static async create(req: Request, res: Response): Promise<Response> {
     try {
       const data = req.body;
+      data.is_active === true ? (data.is_active = 1) : (data.is_active = 0);
       const validation = propertySchema.parse(data);
       const createProperty = await PropertyModel.create(data);
       if (createProperty.affectedRows < 1) return res.status(400).json(PropertyController.error400PropertyCreate);
