@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import {PropertyController } from '../controllers/property.controller';
+import { PropertyController } from '../controllers/property.controller';
 
 const router: Router = Router();
 
