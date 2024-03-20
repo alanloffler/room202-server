@@ -7,6 +7,7 @@ import userRoutes from './routes/user.routes';
 import propertyRoutes from './routes/property.routes';
 import photoRoutes from './routes/image.routes';
 import uiRoutes from './routes/ui.routes';
+import dashboardRoutes from './routes/dashboard.routes';
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use('/api', userRoutes);
 app.use('/api', propertyRoutes);
 app.use('/api', uiRoutes);
 app.use('/api', photoRoutes);
+app.use('/api', dashboardRoutes);
 
 app.listen(port, () => {
     console.log('Server running on port', port);
